@@ -3,3 +3,175 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+     --green: #009688;
+     --grey: #d8dbd5;
+     --lightgrey: #f3eeea;
+     --lightblue: #8edafc;
+}
+
+body {
+    padding-top: 5vh;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, 
+     var(--green) 15%, var(--grey) 15% );
+}
+
+a {
+    color:inherit;
+    
+}
+
+a:hover{
+    opacity: 0.8;
+}
+
+.container {
+    z-index: 1;
+    width: 80%;
+    margin:auto;
+    height: 90vh;
+    background-color: var(--grey);
+    display: flex;
+    position: relative;
+    gap: 10px;
+}
+
+.left-bar {
+    background-color:white;
+    flex: 1;  
+    min-width: 300px;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+}
+
+.right-bar {
+    flex: 2;
+    background-image: url("img/hero.jpg");
+    position: relative;
+}
+
+.header {
+    background-color: var(--lightgrey);
+    min-height: 80px;
+    width: 100%;
+}
+
+.right-bar .footer {
+    background-color: var(--lightgrey);
+    min-height: 80px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    
+}
+
+
+.left-bar .header {
+    width: 100%;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+
+.left-bar .icons {
+    color: grey;
+    display: flex;
+    gap: 20px;
+}
+
+.left-bar .activate-notification {
+    min-height: 80px;
+    background-color: var(--lightblue);
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: left;
+    padding: 0 10px;
+    
+}
+
+.left-bar .activate-notification .text-activate-upper {
+    font-weight: 600;
+    margin-left: 20px;
+    margin-bottom: 3px;
+}
+.left-bar .activate-notification .text-activate-lower a {
+    
+    color:inherit;
+    opacity: 0.6;
+    margin-left: 20px;
+    text-decoration: underline;
+}
+
+
+.left-bar .contact-search {
+    display:flex;
+    padding: 10px;
+    min-height: 50px;
+    background-color: var(--lightgrey);
+}
+
+#contact-search{
+    padding: 0 20px;
+    flex: 2;
+}
+
+#contact-search::placeholder{
+    font-family: Circular, 'Font Awesome 5 Free' !important;
+    font-weight: 900 ;
+    color:rgb(155, 155, 155);
+}
+
+
+.right-bar .header {
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.right-bar .header .logo {
+    display:flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.right-bar .header .icons {
+    color: grey;
+    display:flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+
+.right-bar .footer {
+    color: grey;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+}
+
+#message-input {
+    border: none;
+    border-radius: 10px;
+    padding: 0 10px;
+    flex-basis: 80%;
+    height: 60px;
+}
+
+
+
+
+
+
+
+
