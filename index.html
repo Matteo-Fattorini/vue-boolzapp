@@ -28,10 +28,10 @@
         <div class="left-bar">
           <!-- Left bar header -->
           <div class="header">
-			<div class=self-profile>
-			<div class="logo"><img :src="mySelf.avatar" alt="LOGO" /></div>
-			<span id="self-name"> {{mySelf.name}} </span>
-			</div>
+            <div class="self-profile">
+              <div class="logo"><img :src="mySelf.avatar" alt="LOGO" /></div>
+              <span id="self-name"> {{mySelf.name}} </span>
+            </div>
             <div class="icons">
               <i class="fas fa-circle-notch"></i>
               <i class="fas fa-comment-alt"></i>
@@ -52,55 +52,73 @@
           </div>
           <!-- left bar search -->
           <div class="contact-search">
-			<input
-			  @input ="search"
-			  v-model = "contactSearch"
+            <input
+              @input="search"
+              v-model="contactSearch"
               placeholder="&#xF002;       Cerca o inizia una nuova chat "
               id="contact-search"
               type="text"
             />
-		  </div>
-		  
-		  <!-- left-bar-contacts -->
-		  <div class="contacts">
-			  <ul>
-				  <template v-if ="filteredContacts.length > 0 || searchToggle == true">
-				  <li v-for= "(contact, index) in filteredContacts ">
-					  <div class="logo"><img :src="contact.avatar" alt="LOGO" /></div>
-					  <span class = "contact-name">{{contact.name}}</span>
-					  <div class="last-message">Here will stay the last message</div>
-				  </li>
-				  </template>
-				  <template v-else >
-				  <li v-for= "(contact, index) in contacts ">
-					  <div class="logo"><img :src="contact.avatar" alt="LOGO" /></div>
-					  <span class = "contact-name">{{contact.name}}</span>
-					  <div class="last-message">Here will stay the last messagaaaaaaaaaaaaaaaaae</div>
-				  </li>
-				  </template>
-				
-			  </ul>
-		  </div>
+          </div>
 
-
+          <!-- left-bar-contacts -->
+          <div class="contacts">
+            <ul>
+              <template
+                v-if="filteredContacts.length > 0 || searchToggle == true"
+              >
+                <li
+                  @click="selectContact($event)"
+                  :value="contact.id"
+                  :key="contact.id"
+                  v-for="(contact, index) in filteredContacts "
+                >
+                  <div class="logo">
+                    <img :src="contact.avatar" alt="LOGO" />
+                  </div>
+                  <span class="contact-name">{{contact.name}}</span>
+                  <div class="last-message">
+                    Here will stay the last message
+                  </div>
+                </li>
+              </template>
+              <template v-else>
+                <li
+                  @click="selectContact($event)"
+                  :value="contact.id"
+                  :key="contact.id"
+                  v-for="(contact, index) in contacts "
+                >
+                  <div class="logo">
+                    <img :src="contact.avatar" alt="LOGO" />
+                  </div>
+                  <span class="contact-name">{{contact.name}}</span>
+                  <div class="last-message">
+                    Here will stay the last message
+                  </div>
+                </li>
+              </template>
+            </ul>
+          </div>
         </div>
         <!-- Right bar -->
         <div class="right-bar">
           <!-- Right-bar-Header -->
           <div class="header">
             <div class="logo">
-              <div class="image"><img src="" alt="LOGO" /></div>
+
+              <!-- TODO immagine standard se array vuoto -->
+              <div class="image"><img :src="currentContact.avatar" alt="LOGO" /></div>
               <div class="details">
-                <div class="name">Nome Utente selezionato</div>
+                <div class="name">{{currentContact.name}}</div>
                 <div class="lastSeen">Ultimo accesso oggi alle</div>
               </div>
-			</div>
-			<div class="icons">
-				<a href="#"><i class="fas fa-search"></i></a>
-				<a href="#"><i class="fas fa-paperclip"></i></a>
-				<a href="#"><i class="fas fa-ellipsis-v"></i></a>
-				
-			</div>
+            </div>
+            <div class="icons">
+              <a href="#"><i class="fas fa-search"></i></a>
+              <a href="#"><i class="fas fa-paperclip"></i></a>
+              <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+            </div>
           </div>
 
           <!-- Right-bar-messageArea -->
@@ -108,13 +126,13 @@
 
           <!-- Right-bar-Footer -->
           <div class="footer">
-           <a href="#"><i class="far fa-smile fa-2x"></i></a> 
+            <a href="#"><i class="far fa-smile fa-2x"></i></a>
             <input
               id="message-input"
               type="text"
               placeholder="scrivi un messaggio"
             />
-            <a href="#"><i class="fas fa-microphone fa-2x"></i></a> 
+            <a href="#"><i class="fas fa-microphone fa-2x"></i></a>
           </div>
         </div>
       </div>

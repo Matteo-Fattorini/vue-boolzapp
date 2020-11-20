@@ -86,7 +86,7 @@ a:hover {
   align-items: center;
 }
 
-.left-bar .header img {
+.left-bar .header img, .right-bar .header img {
   height: 50px;
   border-radius: 100%;
 }
@@ -145,7 +145,7 @@ a:hover {
   font-weight: 600;
 }
 
-.left-bar .contacts img {
+.left-bar .contacts img  {
   height: 80px;
   border-radius: 100%;
 }
@@ -211,6 +211,8 @@ a:hover {
   align-items: center;
   gap: 20px;
 }
+
+
 
 .right-bar .header .icons {
   color: grey;
