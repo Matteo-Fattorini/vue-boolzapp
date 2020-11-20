@@ -78,6 +78,7 @@ a:hover {
 .left-bar #self-name {
   margin-left: 10px;
   font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .left-bar .self-profile {
@@ -135,11 +136,13 @@ a:hover {
 .left-bar .contacts {
   height: calc(100% - 210px);
   padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x:hidden;
 }
 
 .left-bar .contacts .contact-name {
   font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .left-bar .contacts img {
@@ -170,11 +173,24 @@ a:hover {
     cursor: pointer;
 }
 
+.left-bar .contacts li .last-message{
+    overflow: hidden;
+    position: absolute;
+    height: 20%;
+    left: 40%;
+    bottom: 10%;
+    width: 100%;
+}
+
+
+
 
 
 #contact-search {
   padding: 0 20px;
   flex: 2;
+  border:none;
+  border-radius: 5px;
 }
 
 #contact-search::placeholder {
@@ -215,5 +231,10 @@ a:hover {
   border-radius: 10px;
   padding: 0 10px;
   flex-basis: 80%;
-  height: 60px;
+  min-height: 60px;
+  font-size: 1.2rem;
+  overflow-wrap: anywhere; 
 }
+
+
+
