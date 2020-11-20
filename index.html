@@ -28,7 +28,10 @@
         <div class="left-bar">
           <!-- Left bar header -->
           <div class="header">
-            <div class="logo"><img src="" alt="LOGO" /> Nome self</div>
+			<div class=self-profile>
+			<div class="logo"><img :src="mySelf.avatar" alt="LOGO" /></div>
+			<span id="self-name"> {{mySelf.name}} </span>
+			</div>
             <div class="icons">
               <i class="fas fa-circle-notch"></i>
               <i class="fas fa-comment-alt"></i>
@@ -54,7 +57,20 @@
               id="contact-search"
               type="text"
             />
-          </div>
+		  </div>
+		  
+		  <!-- left-bar-contacts -->
+		  <div class="contacts">
+			  <ul>
+				  <li v-for= "(contact, index) in contacts ">
+					  <div class="logo"><img :src="contact.avatar" alt="LOGO" /></div>
+					  <span class = "contact-name">{{contact.name}}</span>
+				  </li>
+				
+			  </ul>
+		  </div>
+
+
         </div>
         <!-- Right bar -->
         <div class="right-bar">
@@ -68,9 +84,9 @@
               </div>
 			</div>
 			<div class="icons">
-				<a href="#"><i class="fas fa-search fa-2x"></i></a>
-				<a href="#"><i class="fas fa-paperclip fa-2x"></i></a>
-				<a href="#"><i class="fas fa-ellipsis-v fa-2x"></i></a>
+				<a href="#"><i class="fas fa-search"></i></a>
+				<a href="#"><i class="fas fa-paperclip"></i></a>
+				<a href="#"><i class="fas fa-ellipsis-v"></i></a>
 				
 			</div>
           </div>
