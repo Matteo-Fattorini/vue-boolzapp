@@ -69,7 +69,14 @@ const app = new Vue({
     ],
     filteredContacts: [], //new array, based of search
     searchToggle: false, // will use this to know when user tried to search something
-    currentContact: {}, //this will be the selected contacts. Chat will change on this status
+    currentContact: {
+      //this will be the selected contacts. Chat will change on this status
+      avatar: "css/img/avatar_io.jpg",
+      name: "Noemi",
+      lastSeen: "",
+      lastMessage: "",
+      id: 100,
+    },
   },
 
   methods: {
@@ -83,10 +90,9 @@ const app = new Vue({
       );
     },
 
-      selectContact(event) {
-      
-          let value = event.target.value;
-          console.log(value)
+    selectContact(event) {
+      let value = event.target.value;
+      console.log(value);
       this.contacts.forEach((e) => {
         if (e.id == value) {
           this.currentContact = e;
