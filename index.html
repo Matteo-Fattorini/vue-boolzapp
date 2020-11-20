@@ -64,7 +64,7 @@
 		  <!-- left-bar-contacts -->
 		  <div class="contacts">
 			  <ul>
-				  <template v-if ="filteredContacts.length > 0">
+				  <template v-if ="filteredContacts.length > 0 || searchToggle == true">
 				  <li v-for= "(contact, index) in filteredContacts ">
 					  <div class="logo"><img :src="contact.avatar" alt="LOGO" /></div>
 					  <span class = "contact-name">{{contact.name}}</span>

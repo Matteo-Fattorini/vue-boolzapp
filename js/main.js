@@ -51,25 +51,20 @@ const app = new Vue({
       },
     ],
     filteredContacts: [], //new array, based of search
+    searchToggle: false, // will use this to know when user tried to search something
   },
 
   methods: {
     /** this methos is for searching. If an element in the search bar is present in any of contact name,
     add it to the filtered contact list. In HTML v-for is on normal contacts if search is empty and on filtered if not */
-      
+
     search() {
+      this.searchToggle = true;
       this.filteredContacts = this.contacts.filter((contact, i) =>
         contact.name.toLowerCase().includes(this.contactSearch.toLowerCase())
       );
     },
-    },
-  
+  },
+
   computed: {},
 });
-
-
-
-
-
-
-
