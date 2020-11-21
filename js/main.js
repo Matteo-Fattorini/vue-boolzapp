@@ -1,4 +1,4 @@
-const app = new Vue({
+var app = new Vue({
   el: "#app",
   data: {
     mySelf: {
@@ -9,6 +9,7 @@ const app = new Vue({
     contactSearch: "", //v-modeled with search in contact
     sendMessageText: "", //v-modeled with sendMessage
     possibleAnswers: [
+      //possible answer that every contact can give
       "Not sure about that",
       "Yeah, whatever",
       "I guess so...",
@@ -17,6 +18,9 @@ const app = new Vue({
       "No, i don't think so",
       "Are you sure about that?",
       "I never tought about that!",
+      "I would love to!",
+      "I always wanted you to ask me that...",
+      "Me too!",
     ],
 
     contacts: [
@@ -24,7 +28,7 @@ const app = new Vue({
       {
         avatar: "css/img/avatar_io.jpg",
         name: "Noemi",
-        lastSeen: "18:32",
+        lastSeen: "22:32",
         lastMessage: [
           "Hey what's going on?",
           "Everything's good!",
@@ -32,12 +36,13 @@ const app = new Vue({
           "Sure!",
           "Awesome!",
         ],
+        timeStamp: ["22:15", "22:15", "22:18", "22:19", "22:20"],
         id: 100,
       },
       {
         avatar: "css/img/avatar_1.jpg",
         name: "Jacopo",
-        lastSeen: "15:24",
+        lastSeen: "22:00",
         lastMessage: [
           "Have you seen the news?",
           "Yeah, unbelievable!",
@@ -45,19 +50,21 @@ const app = new Vue({
           "Guess you were right!",
           "I always am!",
         ],
+        timeStamp: ["22:12", "22:12", "22:13", "22:13", "22:14"],
         id: 101,
       },
       {
         avatar: "css/img/avatar_3.jpg",
-        name: "Giulio",
-        lastSeen: "12:21",
+        name: "Leo",
+        lastSeen: "21:50",
         lastMessage: ["So tomorrow at 10.00?", "Sure!", "Great!"],
         id: 102,
+        timeStamp: ["21:39", "21:40", "21:45"],
       },
       {
         avatar: "css/img/avatar_4.jpg",
         name: "Marco",
-        lastSeen: "18:15",
+        lastSeen: "20:00",
         lastMessage: [
           "What do you think about this new Whats'app?",
           "I love it!",
@@ -65,33 +72,36 @@ const app = new Vue({
           "Yeah sure...!",
           "I got that from reliable sources!",
         ],
+        timeStamp: ["19:32", "19:33", "19:33", "19:34", "19:35"],
         id: 103,
       },
       {
         avatar: "css/img/avatar_5.jpg",
         name: "Elia",
-        lastSeen: "14:26",
+        lastSeen: "19:00",
         lastMessage: [
           "Man, we should hang up sometime",
           "Tomorrow?",
           "Sound's Good!",
         ],
+        timeStamp: ["18:32", "18:33", "18:33"],
         id: 104,
       },
       {
         avatar: "css/img/avatar_6.jpg",
         name: "Giulia",
-        lastSeen: "12:00",
+        lastSeen: "18:00",
         lastMessage: [
           "Going to sleep now, see you tomorrow!",
           "Good night! \u2764",
         ],
+        timeStamp: ["17:32", "17:33"],
         id: 105,
       },
       {
         avatar: "css/img/avatar_7.jpg",
         name: "Alessio",
-        lastSeen: "22:00",
+        lastSeen: "17:00",
         lastMessage: [
           "Yeah now it works!",
           "Do you like this app?",
@@ -100,12 +110,13 @@ const app = new Vue({
           "Why some button's aren't working?",
           "Yeah i have to go now, bye!",
         ],
+        timeStamp: ["16:32", "16:33", "16:33", "16:34", "16:35", "16:36"],
         id: 106,
       },
       {
         avatar: "css/img/avatar_8.jpg",
         name: "Luca",
-        lastSeen: "15:00",
+        lastSeen: "12:00",
         lastMessage: [
           "Do you like hot dogs?",
           "I like them a lot",
@@ -113,8 +124,11 @@ const app = new Vue({
           "Sure!",
         ],
         id: 107,
+        timeStamp: ["11:32", "11:33", "11:33", "11:34"],
       },
     ],
+    isWriting: false, //will use this to know when the automate answer is triggered
+
     filteredContacts: [], //new array, based of search
     searchToggle: false, // will use this to know when user tried to search something
     currentContact: {
@@ -129,6 +143,7 @@ const app = new Vue({
         "Sure!",
         "Awesome!",
       ],
+      timeStamp: ["22:15", "22:15", "22:18", "22:19", "22:20"],
       id: 100,
     },
   },
@@ -144,6 +159,39 @@ const app = new Vue({
       );
     },
 
+    //this function keep the scroll to the last sent element
+    //  TODO: not working properly
+    scrollToElement() {
+      let el = this.$el.getElementsByClassName("list-element");
+      let len = el.length;
+      let al = el[len - 1];
+      if (al) {
+        al.scrollIntoView(false);
+      }
+    },
+
+    /** this function handles chat. Will push to the array of message of currentContact the text value of message element  */
+
+    sendMessage() {
+      var today = new Date();
+      var minutes =
+        parseInt(today.getMinutes()) > 10 // adds a "0" if minutes are lower than 10
+          ? today.getMinutes()
+          : "0" + today.getMinutes();
+      var time = today.getHours() + ":" + minutes;
+      let maxLen = this.possibleAnswers.length;
+      let answer = this.possibleAnswers;
+      let random = Math.floor(Math.random() * maxLen);
+      let current = this.currentContact;
+      if (this.sendMessageText.length > 0 && !this.isWriting) {
+        this.currentContact.lastMessage.push(this.sendMessageText);
+        this.currentContact.timeStamp.push(time);
+
+        this.sendMessageText = "";
+        this.answer(current, random, answer, time);
+      }
+    },
+
     /* this function handles the click on the contacts. Will assign the the clicked contact to currentContact obj.*/
     selectContact(id) {
       this.contacts.forEach((e) => {
@@ -153,34 +201,18 @@ const app = new Vue({
       });
     },
 
-    /** this function handles chat. Will push to the array of message of currentContact the text value of message element  */
-
-    sendMessage(event) {
-      let maxLen = this.possibleAnswers.length;
-      let answer = this.possibleAnswers;
-      let random = Math.floor(Math.random() * maxLen);
-      let current = this.currentContact;
-      this.currentContact.lastMessage.push(this.sendMessageText);
-      this.sendMessageText = "";
-      this.answer(current, random, answer);
-    },
-
     // this functions is only called after sendMessage. Will trigger a random answer, change the lastSeen in 1.5 sec time
 
-    answer(current, random, answers) {
-      let today = new Date();
-      let minutes =
-        parseInt(today.getMinutes()) > 10 // adds a "0" if minutes are lower than 10
-          ? today.getMinutes()
-          : "0" + today.getMinutes();
-      var time = today.getHours() + ":" + minutes;
-
+    answer(current, random, answers, time) {
+      app.isWriting = true;
       setTimeout(function () {
         current.lastSeen = time;
         current.lastMessage.push(answers[random]);
-      }, 1500);
+        current.timeStamp.push(time);
+        app.isWriting = false;
+      }, 2000);
     },
   },
-
-  computed: {},
 });
+
+//TODO  *sistemare scroll, tirare su la posizione dei contatti quando scrivono, bug del primo contatto se non click, orario nella chat
