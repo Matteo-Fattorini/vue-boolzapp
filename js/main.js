@@ -7,6 +7,17 @@ const app = new Vue({
     },
 
     contactSearch: "", //v-modeled with search in contact
+    sendMessageText: "", //v-modeled with sendMessage
+    possibleAnswers: [
+      "Not sure about that",
+      "Yeah, whatever",
+      "I guess so...",
+      "Probably not",
+      "Yeah, indeed!",
+      "No, i don't think so",
+      "Are you sure about that?",
+      "I never tought about that!",
+    ],
 
     contacts: [
       //array of contacts, as obj, with avatar,name,lastSeen proprieties
@@ -52,7 +63,7 @@ const app = new Vue({
           "I love it!",
           "Yeah me too! I heard next patch will be emoticon!",
           "Yeah sure...!",
-          "I got that from reliable sources!"
+          "I got that from reliable sources!",
         ],
         id: 103,
       },
@@ -64,7 +75,6 @@ const app = new Vue({
           "Man, we should hang up sometime",
           "Tomorrow?",
           "Sound's Good!",
-          
         ],
         id: 104,
       },
@@ -88,8 +98,7 @@ const app = new Vue({
           "It's pretty good!",
           "Yeah i love it too!",
           "Why some button's aren't working?",
-          "Yeah i have to go now, bye!"
-
+          "Yeah i have to go now, bye!",
         ],
         id: 106,
       },
@@ -118,7 +127,7 @@ const app = new Vue({
         "Everything's good!",
         "Wanna hang up later?",
         "Sure!",
-        "Awesome!"
+        "Awesome!",
       ],
       id: 100,
     },
@@ -135,16 +144,41 @@ const app = new Vue({
       );
     },
 
-    /**
-     *
-     * this function handles the click on the contacts. Will assign the the clicked contact to currentContact obj.
-     */
+    /* this function handles the click on the contacts. Will assign the the clicked contact to currentContact obj.*/
     selectContact(id) {
       this.contacts.forEach((e) => {
         if (e.id == id) {
           this.currentContact = e;
         }
       });
+    },
+
+    /** this function handles chat. Will push to the array of message of currentContact the text value of message element  */
+
+    sendMessage(event) {
+      let maxLen = this.possibleAnswers.length;
+      let answer = this.possibleAnswers;
+      let random = Math.floor(Math.random() * maxLen);
+      let current = this.currentContact;
+      this.currentContact.lastMessage.push(this.sendMessageText);
+      this.sendMessageText = "";
+      this.answer(current, random, answer);
+    },
+
+    // this functions is only called after sendMessage. Will trigger a random answer, change the lastSeen in 1.5 sec time
+
+    answer(current, random, answers) {
+      let today = new Date();
+      let minutes =
+        parseInt(today.getMinutes()) > 10 // adds a "0" if minutes are lower than 10
+          ? today.getMinutes()
+          : "0" + today.getMinutes();
+      var time = today.getHours() + ":" + minutes;
+
+      setTimeout(function () {
+        current.lastSeen = time;
+        current.lastMessage.push(answers[random]);
+      }, 1500);
     },
   },
 

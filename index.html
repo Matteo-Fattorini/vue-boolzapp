@@ -130,6 +130,8 @@
           <div class="footer">
             <a href="#"><i class="far fa-smile fa-2x"></i></a>
             <input
+              v-model = "sendMessageText"
+              @keydown.enter = "sendMessage($event)"
               id="message-input"
               type="text"
               placeholder="scrivi un messaggio"
