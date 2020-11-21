@@ -82,7 +82,7 @@ var app = new Vue({
         lastMessage: [
           "Man, we should hang up sometime",
           "Tomorrow?",
-          "Sound's Good!",
+          "Sounds Good!",
         ],
         timeStamp: ["18:32", "18:33", "18:33"],
         id: 104,
@@ -93,7 +93,7 @@ var app = new Vue({
         lastSeen: "18:00",
         lastMessage: [
           "Going to sleep now, see you tomorrow!",
-          "Good night! \u2764",
+          "Good night!",
         ],
         timeStamp: ["17:32", "17:33"],
         id: 105,
@@ -132,7 +132,7 @@ var app = new Vue({
     filteredContacts: [], //new array, based of search
     searchToggle: false, // will use this to know when user tried to search something
     currentContact: {
-      //this will be the selected contacts. Chat will change on this status
+      //this will be the selected contacts. Everything will change based on this
     },
   },
 
@@ -148,7 +148,7 @@ var app = new Vue({
     },
 
     //this function keep the scroll to the last sent element
-    //  TODO: not working properly
+
     scrollToElement() {
       let len = this.$refs.listItem.length;
       let al = this.$refs.listItem[len - 1];
@@ -179,7 +179,7 @@ var app = new Vue({
       }
     },
 
-    /* this function handles the click on the contacts. Will assign the the clicked contact to currentContact obj.*/
+    /* this function handles the click on the contacts. Will assign the clicked contact to currentContact obj.*/
     selectContact(id) {
       this.contacts.forEach((e) => {
         if (e.id == id) {
@@ -188,7 +188,7 @@ var app = new Vue({
       });
     },
 
-    // this functions is only called after sendMessage. Will trigger a random answer, change the lastSeen in 1.5 sec time
+    // this functions is only called after sendMessage. Will trigger a random answer and add time stamp. 2 sec delay
 
     answer(current, random, answers, time) {
       app.isWriting = true;
@@ -206,6 +206,7 @@ var app = new Vue({
     this.$nextTick(() => this.scrollToElement());
   },
   mounted() {
+    //as soon as he load current contact becomes the first one
     this.currentContact = this.contacts[0]
   }
 });
@@ -215,4 +216,4 @@ var app = new Vue({
 
 
 
-//TODO  tirare su la posizione dei contatti quando scrivono, bug del primo contatto se non click
+//TODO  tirare su la posizione dei contatti quando scrivono

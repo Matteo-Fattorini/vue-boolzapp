@@ -129,12 +129,12 @@ a:hover {
 .left-bar .contact-search {
   display: flex;
   padding: 10px;
-  min-height: 50px;
+  min-height: 60px;
   background-color: #fafafa;
 }
 
 .left-bar .contacts {
-  height: calc(100% - 210px);
+  height: calc(100% - 220px);
   padding: 10px;
   overflow-y: auto;
   overflow-x:hidden;
@@ -192,10 +192,11 @@ a:hover {
 
 
 #contact-search {
+  font-size: 1rem;
   padding: 0 20px;
   flex: 2;
   border:none;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 #contact-search::placeholder {
