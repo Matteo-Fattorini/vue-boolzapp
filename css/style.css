@@ -48,7 +48,6 @@ a:hover {
 }
 
 .right-bar {
-  flex-basis: 350px;
   flex: 2;
   background-image: url("img/hero.jpg");
   position: relative;
@@ -179,7 +178,7 @@ a:hover {
 .left-bar .contacts li .last-message{
     overflow: hidden;
     position: absolute;
-    height: 25%;
+    height: 20%;
     left: 35%;
     bottom: 20%;
     width: 65%;
@@ -253,11 +252,19 @@ a:hover {
   flex-direction: column;
 }
 
+
+
 .right-bar li .timeStamp {
   position: absolute;
   bottom: 5px;
   right: 10px;
 
+}
+
+.right-bar li {
+  max-width: 400px;
+  overflow-wrap: anywhere;
+  
 }
 
 .right-bar ul li:nth-child(odd){

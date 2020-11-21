@@ -133,18 +133,6 @@ var app = new Vue({
     searchToggle: false, // will use this to know when user tried to search something
     currentContact: {
       //this will be the selected contacts. Chat will change on this status
-      avatar: "css/img/avatar_io.jpg",
-      name: "Noemi",
-      lastSeen: "18:32",
-      lastMessage: [
-        "Hey what's going on?",
-        "Everything's good!",
-        "Wanna hang up later?",
-        "Sure!",
-        "Awesome!",
-      ],
-      timeStamp: ["22:15", "22:15", "22:18", "22:19", "22:20"],
-      id: 100,
     },
   },
 
@@ -162,9 +150,8 @@ var app = new Vue({
     //this function keep the scroll to the last sent element
     //  TODO: not working properly
     scrollToElement() {
-      let el = this.$el.getElementsByClassName("list-element");
-      let len = el.length;
-      let al = el[len - 1];
+      let len = this.$refs.listItem.length;
+      let al = this.$refs.listItem[len - 1];
       if (al) {
         al.scrollIntoView(true);
       }
@@ -218,6 +205,9 @@ var app = new Vue({
     // whenever data changes and the component re-renders, this is called.
     this.$nextTick(() => this.scrollToElement());
   },
+  mounted() {
+    this.currentContact = this.contacts[0]
+  }
 });
 
 

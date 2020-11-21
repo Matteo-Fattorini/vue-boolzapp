@@ -126,7 +126,7 @@
           <div id= "prova" class="message-area">
             <ul>
               
-              <li class="list-element" v-for="( message,index) in currentContact.lastMessage"> <span>{{message}} </span> 
+              <li ref="listItem" class="list-element" v-for="( message,index) in currentContact.lastMessage"> <span>{{message}} </span> 
                 <span class="timeStamp"> {{currentContact.timeStamp[index]}} </span>
               </li>
             </ul>
