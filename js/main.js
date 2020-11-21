@@ -130,7 +130,7 @@ var app = new Vue({
     isWriting: false, //will use this to know when the automate answer is triggered
 
     filteredContacts: [], //new array, based of search
-    searchToggle: false, // will use this to know when user tried to search something
+    
     currentContact: {
       //this will be the selected contacts. Everything will change based on this
     },
@@ -141,7 +141,6 @@ var app = new Vue({
     add it to the filtered contact list. In HTML v-for is on normal contacts if search is empty and on filtered if not */
 
     search() {
-      this.searchToggle = true;
       this.filteredContacts = this.contacts.filter((contact) =>
         contact.name.toLowerCase().includes(this.contactSearch.toLowerCase())
       );
@@ -208,6 +207,7 @@ var app = new Vue({
   mounted() {
     //as soon as he load current contact becomes the first one
     this.currentContact = this.contacts[0]
+    this.filteredContacts = [...this.contacts]
   }
 });
 

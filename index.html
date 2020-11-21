@@ -64,9 +64,6 @@
           <!-- left-bar-contacts -->
           <div class="contacts">
             <ul>
-              <template
-                v-if="filteredContacts.length > 0 || searchToggle == true"
-              >
                 <li
                   @click="selectContact(contact.id)"
                   v-for="contact in filteredContacts "
@@ -80,24 +77,7 @@
                     {{contact.lastMessage[contact.lastMessage.length-1]}}
                   </div>
                   <div class="lastConversation">{{contact.timeStamp[contact.timeStamp.length-1]}}</div>
-                </li>
-              </template>
-              <template v-else>
-                <li
-                  @click="selectContact(contact.id)"
-                  v-for="contact in contacts "
-                  :key="contact.id"
-                >
-                  <div class="logo">
-                    <img :src="contact.avatar" alt="LOGO" />
-                  </div>
-                  <span class="contact-name">{{contact.name}}</span>
-                  <div class="last-message">
-                    {{contact.lastMessage[contact.lastMessage.length-1]}}
-                  </div>
-                  <div class="lastConversation">{{contact.timeStamp[contact.timeStamp.length-1]}}</div>
-                </li>
-              </template>
+                </li>      
             </ul>
           </div>
         </div>
