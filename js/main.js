@@ -166,7 +166,7 @@ var app = new Vue({
       let len = el.length;
       let al = el[len - 1];
       if (al) {
-        al.scrollIntoView(false);
+        al.scrollIntoView(true);
       }
     },
 
@@ -213,6 +213,16 @@ var app = new Vue({
       }, 2000);
     },
   },
+
+  updated() {
+    // whenever data changes and the component re-renders, this is called.
+    this.$nextTick(() => this.scrollToElement());
+  },
 });
 
-//TODO  *sistemare scroll, tirare su la posizione dei contatti quando scrivono, bug del primo contatto se non click, orario nella chat
+
+
+
+
+
+//TODO  tirare su la posizione dei contatti quando scrivono, bug del primo contatto se non click
