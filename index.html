@@ -68,33 +68,31 @@
                 v-if="filteredContacts.length > 0 || searchToggle == true"
               >
                 <li
-                  @click="selectContact($event)"
-                  :value="contact.id"
-                  :key="contact.id"
+                  @click="selectContact(contact.id)"
                   v-for="(contact, index) in filteredContacts "
+                  :key="contact.id"
                 >
                   <div class="logo">
                     <img :src="contact.avatar" alt="LOGO" />
                   </div>
                   <span class="contact-name">{{contact.name}}</span>
                   <div class="last-message">
-                    Here will stay the last message
+                    {{contact.lastMessage[contact.lastMessage.length-1]}}
                   </div>
                 </li>
               </template>
               <template v-else>
                 <li
-                  @click="selectContact($event)"
-                  :value="contact.id"
-                  :key="contact.id"
+                  @click="selectContact(contact.id)"
                   v-for="(contact, index) in contacts "
+                  :key="contact.id"
                 >
                   <div class="logo">
                     <img :src="contact.avatar" alt="LOGO" />
                   </div>
                   <span class="contact-name">{{contact.name}}</span>
                   <div class="last-message">
-                    Here will stay the last message
+                    {{contact.lastMessage[contact.lastMessage.length-1]}}
                   </div>
                 </li>
               </template>
@@ -106,12 +104,12 @@
           <!-- Right-bar-Header -->
           <div class="header">
             <div class="logo">
-
-              <!-- TODO immagine standard se array vuoto -->
-              <div class="image"><img :src="currentContact.avatar" alt="LOGO" /></div>
+              <div class="image">
+                <img :src="currentContact.avatar" alt="LOGO" />
+              </div>
               <div class="details">
                 <div class="name">{{currentContact.name}}</div>
-                <div class="lastSeen">Ultimo accesso oggi alle</div>
+                <div class="lastSeen">Ultimo accesso oggi alle {{currentContact.lastSeen}}</div>
               </div>
             </div>
             <div class="icons">
@@ -122,7 +120,11 @@
           </div>
 
           <!-- Right-bar-messageArea -->
-          <div class="message-area"></div>
+          <div id= "prova" class="message-area">
+            <ul>
+              <li v-for="message in currentContact.lastMessage">{{message}}</li>
+            </ul>
+          </div>
 
           <!-- Right-bar-Footer -->
           <div class="footer">

@@ -13,57 +13,96 @@ const app = new Vue({
       {
         avatar: "css/img/avatar_io.jpg",
         name: "Noemi",
-        lastSeen: "",
-        lastMessage: "",
+        lastSeen: "18:32",
+        lastMessage: [
+          "Hey what's going on?",
+          "Everything's good!",
+          "Wanna hang up later?",
+          "Sure!",
+          "Awesome!",
+        ],
         id: 100,
       },
       {
         avatar: "css/img/avatar_1.jpg",
         name: "Jacopo",
-        lastSeen: "",
-        lastMessage: "",
+        lastSeen: "15:24",
+        lastMessage: [
+          "Have you seen the news?",
+          "Yeah, unbelievable!",
+          "I told you it would be that way!",
+          "Guess you were right!",
+          "I always am!",
+        ],
         id: 101,
       },
       {
         avatar: "css/img/avatar_3.jpg",
         name: "Giulio",
-        lastSeen: "",
-        lastMessage: "",
+        lastSeen: "12:21",
+        lastMessage: ["So tomorrow at 10.00?", "Sure!", "Great!"],
         id: 102,
       },
       {
         avatar: "css/img/avatar_4.jpg",
         name: "Marco",
-        lastSeen: "",
-        lastMessage: "",
+        lastSeen: "18:15",
+        lastMessage: [
+          "What do you think about this new Whats'app?",
+          "I love it!",
+          "Yeah me too! I heard next patch will be emoticon!",
+          "Yeah sure...!",
+          "I got that from reliable sources!"
+        ],
         id: 103,
       },
       {
         avatar: "css/img/avatar_5.jpg",
         name: "Elia",
-        lastSeen: "",
-        lastMessage: "",
+        lastSeen: "14:26",
+        lastMessage: [
+          "Man, we should hang up sometime",
+          "Tomorrow?",
+          "Sound's Good!",
+          
+        ],
         id: 104,
       },
       {
         avatar: "css/img/avatar_6.jpg",
         name: "Giulia",
-        lastSeen: "",
-        lastMessage: "",
+        lastSeen: "12:00",
+        lastMessage: [
+          "Going to sleep now, see you tomorrow!",
+          "Good night! \u2764",
+        ],
         id: 105,
       },
       {
         avatar: "css/img/avatar_7.jpg",
         name: "Alessio",
-        lastSeen: "",
-        lastMessage: "",
+        lastSeen: "22:00",
+        lastMessage: [
+          "Yeah now it works!",
+          "Do you like this app?",
+          "It's pretty good!",
+          "Yeah i love it too!",
+          "Why some button's aren't working?",
+          "Yeah i have to go now, bye!"
+
+        ],
         id: 106,
       },
       {
         avatar: "css/img/avatar_8.jpg",
         name: "Luca",
-        lastSeen: "",
-        lastMessage: "",
+        lastSeen: "15:00",
+        lastMessage: [
+          "Do you like hot dogs?",
+          "I like them a lot",
+          "How about one right now",
+          "Sure!",
+        ],
         id: 107,
       },
     ],
@@ -73,14 +112,20 @@ const app = new Vue({
       //this will be the selected contacts. Chat will change on this status
       avatar: "css/img/avatar_io.jpg",
       name: "Noemi",
-      lastSeen: "",
-      lastMessage: "",
+      lastSeen: "18:32",
+      lastMessage: [
+        "Hey what's going on?",
+        "Everything's good!",
+        "Wanna hang up later?",
+        "Sure!",
+        "Awesome!"
+      ],
       id: 100,
     },
   },
 
   methods: {
-    /** this methos is for searching. If an element in the search bar is present in any of contact name,
+    /** this function is for searching. If an element in the search bar is present in any of contact name,
     add it to the filtered contact list. In HTML v-for is on normal contacts if search is empty and on filtered if not */
 
     search() {
@@ -90,11 +135,13 @@ const app = new Vue({
       );
     },
 
-    selectContact(event) {
-      let value = event.target.value;
-      console.log(value);
+    /**
+     *
+     * this function handles the click on the contacts. Will assign the the clicked contact to currentContact obj.
+     */
+    selectContact(id) {
       this.contacts.forEach((e) => {
-        if (e.id == value) {
+        if (e.id == id) {
           this.currentContact = e;
         }
       });

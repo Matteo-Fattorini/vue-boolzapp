@@ -48,6 +48,7 @@ a:hover {
 }
 
 .right-bar {
+  flex-basis: 350px;
   flex: 2;
   background-image: url("img/hero.jpg");
   position: relative;
@@ -176,10 +177,10 @@ a:hover {
 .left-bar .contacts li .last-message{
     overflow: hidden;
     position: absolute;
-    height: 20%;
-    left: 40%;
-    bottom: 10%;
-    width: 100%;
+    height: 25%;
+    left: 35%;
+    bottom: 20%;
+    width: 70%;
 }
 
 
@@ -206,6 +207,10 @@ a:hover {
   align-items: center;
 }
 
+.right-bar .header .name {
+  font-weight: 600;
+}
+
 .right-bar .header .logo {
   display: flex;
   align-items: center;
@@ -220,6 +225,64 @@ a:hover {
   align-items: center;
   gap: 20px;
 }
+
+
+.right-bar .message-area {
+  padding: 0 70px;
+  height: calc(100% - 160px);
+  overflow-y: auto;
+
+}
+
+.right-bar ul {
+  list-style-type: none;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-bar ul li:nth-child(odd){
+  padding: 30px;
+  background-color: lightgray;
+  align-self: start;
+  border-radius: 20px;
+  position: relative;
+  margin-bottom: 20px;
+}
+.right-bar ul li:nth-child(even){
+  margin-bottom: 20px;
+  position: relative;
+  padding: 30px;
+  align-self: flex-end;
+  background-color: rgb(156, 243, 156);
+  border-radius: 20px;
+}
+
+.right-bar li:nth-child(even):before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid rgb(156, 243, 156);
+  border-right: 10px solid transparent;
+  border-top: 10px solid rgb(156, 243, 156);
+  border-bottom: 10px solid transparent;
+  right: -10px;
+  top: 6px;
+}
+.right-bar li:nth-child(odd):before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-right: 10px solid lightgray;
+  border-left: 10px solid transparent;
+  border-top: 10px solid lightgray;
+  border-bottom: 10px solid transparent;
+  left: -10px;
+  top: 6px;
+}
+
 
 .right-bar .footer {
   color: grey;
