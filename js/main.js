@@ -91,10 +91,7 @@ var app = new Vue({
         avatar: "css/img/avatar_6.jpg",
         name: "Giulia",
         lastSeen: "18:00",
-        lastMessage: [
-          "Going to sleep now, see you tomorrow!",
-          "Good night!",
-        ],
+        lastMessage: ["Going to sleep now, see you tomorrow!", "Good night!"],
         timeStamp: ["17:32", "17:33"],
         id: 105,
       },
@@ -130,7 +127,7 @@ var app = new Vue({
     isWriting: false, //will use this to know when the automate answer is triggered
 
     filteredContacts: [], //new array, based of search
-    
+
     currentContact: {
       //this will be the selected contacts. Everything will change based on this
     },
@@ -172,10 +169,28 @@ var app = new Vue({
       if (this.sendMessageText.length > 0 && !this.isWriting) {
         this.currentContact.lastMessage.push(this.sendMessageText);
         this.currentContact.timeStamp.push(time);
-
+        this.filteredContacts.forEach((e) => (e.writtenTo = false));
+        this.currentContact.writtenTo = true; /** New variable is assigned in every contact: writtenTo */
+        this.filteredContacts.sort(
+          (
+            a,
+            b // This variable is used to sort the array, based on the person
+          ) =>
+            a.writtenTo > b.writtenTo ? -1 : b.writtenTo > a.writtenTo ? 1 : 0 // who has writtenTo = true
+        );
         this.sendMessageText = "";
         this.answer(current, random, answer, time);
       }
+    },
+
+    compare(a, b) {
+      if (a.timeStamp < b.timeStamp) {
+        return -1;
+      }
+      if (a.timeStamp > b.timeStamp) {
+        return 1;
+      }
+      return 0;
     },
 
     /* this function handles the click on the contacts. Will assign the clicked contact to currentContact obj.*/
@@ -206,14 +221,9 @@ var app = new Vue({
   },
   mounted() {
     //as soon as he load current contact becomes the first one
-    this.currentContact = this.contacts[0]
-    this.filteredContacts = [...this.contacts]
-  }
+    this.currentContact = this.contacts[0];
+    this.filteredContacts = [...this.contacts];
+  },
 });
-
-
-
-
-
 
 //TODO  tirare su la posizione dei contatti quando scrivono
