@@ -173,7 +173,7 @@ const app = new Vue({
         current.writtenTo = true; /** New variable is assigned in every contact: writtenTo */
         this.filteredContacts.sort(
           (a, b) =>
-            a.writtenTo > b.writtenTo ? -1 : b.writtenTo > a.writtenTo ? 1 : 0
+            a.writtenTo > b.writtenTo ? -1 : 1
           // This variable is used to sort the array, based on the person
           // who has writtenTo = true
         );
