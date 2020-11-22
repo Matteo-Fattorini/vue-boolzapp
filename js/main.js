@@ -5,7 +5,13 @@ const app = new Vue({
       avatar: "css/img/avatar_2.jpg", //self-contact
       name: "Matteo Fattorini",
     },
+    isWriting: false, //will use this to know when the automate answer is triggered
 
+    filteredContacts: [], //new array, based of search
+
+    currentContact: {
+      //this will be the selected contacts. Everything will change based on this
+    },
     contactSearch: "", //v-modeled with search in contact
     sendMessageText: "", //v-modeled with sendMessage
     possibleAnswers: [
@@ -24,7 +30,7 @@ const app = new Vue({
     ],
 
     contacts: [
-      //array of contacts, as objs. 
+      //array of contacts, as objs.
       {
         avatar: "css/img/avatar_io.jpg",
         name: "Noemi",
@@ -124,17 +130,10 @@ const app = new Vue({
         timeStamp: ["11:32", "11:33", "11:33", "11:34"],
       },
     ],
-    isWriting: false, //will use this to know when the automate answer is triggered
-
-    filteredContacts: [], //new array, based of search
-
-    currentContact: {
-      //this will be the selected contacts. Everything will change based on this
-    },
   },
 
   methods: {
-    /** this function is for searching. If an element in the search bar is present in any of contact name,
+    /** this function is for searching. If a letter is present in the contact name,
     add it to the filtered contact list. In HTML v-for is on filtered list. */
 
     search() {
@@ -147,8 +146,9 @@ const app = new Vue({
 
     scrollToElement() {
       let len = this.$refs.listItem.length;
-      let al = this.$refs.listItem[len - 1];     //gets all items with the class "listItem", specifically the last one
-      if (al) {                                  //scroll into the view of that item
+      let al = this.$refs.listItem[len - 1]; //gets all items with the class "listItem", specifically the last one
+      if (al) {
+        //scroll into the view of that item
         al.scrollIntoView(true);
       }
     },
@@ -167,22 +167,20 @@ const app = new Vue({
       let random = Math.floor(Math.random() * maxLen);
       let current = this.currentContact;
       if (this.sendMessageText.length > 0 && !this.isWriting) {
-        this.currentContact.lastMessage.push(this.sendMessageText);  //this handles the message: will push a new timeStamp ad a new string
-        this.currentContact.timeStamp.push(time);                    // to current contact respective elements.
+        current.lastMessage.push(this.sendMessageText); //this handles the message: will push a new timeStamp ad a new string
+        current.timeStamp.push(time); // to current contact respective elements.
         this.filteredContacts.forEach((e) => (e.writtenTo = false));
-        this.currentContact.writtenTo = true; /** New variable is assigned in every contact: writtenTo */
+        current.writtenTo = true; /** New variable is assigned in every contact: writtenTo */
         this.filteredContacts.sort(
-          (
-            a,
-            b // This variable is used to sort the array, based on the person
-          ) =>
-            a.writtenTo > b.writtenTo ? -1 : b.writtenTo > a.writtenTo ? 1 : 0 // who has writtenTo = true
+          (a, b) =>
+            a.writtenTo > b.writtenTo ? -1 : b.writtenTo > a.writtenTo ? 1 : 0
+          // This variable is used to sort the array, based on the person
+          // who has writtenTo = true
         );
         this.sendMessageText = "";
-        this.answer(current, random, answer, time);   //will call answer function, line 198
+        this.answer(current, random, answer, time); //will call answer function, line 198
       }
     },
-
 
     /* this function handles the click on the contacts. Will assign the clicked contact to currentContact obj.*/
     selectContact(id) {
@@ -199,7 +197,7 @@ const app = new Vue({
       app.isWriting = true;
       setTimeout(function () {
         current.lastSeen = time;
-        current.lastMessage.push(answers[random]);    
+        current.lastMessage.push(answers[random]);
         current.timeStamp.push(time);
         app.isWriting = false;
       }, 2000);
@@ -207,7 +205,7 @@ const app = new Vue({
   },
 
   updated() {
-    // whenever data changes and the component re-renders, this function keeps the overflow 
+    // whenever data changes and the component re-renders, this function keeps the overflow
     this.$nextTick(() => this.scrollToElement());
   },
   mounted() {
@@ -216,5 +214,3 @@ const app = new Vue({
     this.filteredContacts = [...this.contacts];
   },
 });
-
-
