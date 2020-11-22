@@ -183,15 +183,6 @@ var app = new Vue({
       }
     },
 
-    compare(a, b) {
-      if (a.timeStamp < b.timeStamp) {
-        return -1;
-      }
-      if (a.timeStamp > b.timeStamp) {
-        return 1;
-      }
-      return 0;
-    },
 
     /* this function handles the click on the contacts. Will assign the clicked contact to currentContact obj.*/
     selectContact(id) {
