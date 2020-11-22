@@ -186,7 +186,8 @@ a:hover {
 .left-bar .contacts li .lastConversation{
     overflow: hidden;
     position: absolute;
-    right: 0;
+    font-size: 0.8rem;
+    right: 5%;
     top: 10%;
 }
 
@@ -223,6 +224,7 @@ a:hover {
 }
 .right-bar .header .lastSeen {
   margin-top: 10px;
+  
   
 }
 
@@ -261,11 +263,14 @@ a:hover {
 .right-bar li .timeStamp {
   position: absolute;
   bottom: 5px;
-  right: 10px;
+  font-size: 0.7rem;
+  
+  right: 12px;
 
 }
 
 .right-bar li {
+  min-width: 150px;
   max-width: 400px;
   overflow-wrap: anywhere;
   

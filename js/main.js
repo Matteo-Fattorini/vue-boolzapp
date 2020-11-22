@@ -1,3 +1,9 @@
+/**
+ * @author Matteo Fattorini 22-11-2020
+ * Boolzap: a What's app replica using Vue.js
+ */
+
+
 const app = new Vue({
   el: "#app",
   data: {
@@ -143,7 +149,7 @@ const app = new Vue({
     },
 
     //this function keep the scroll to the last sent element. Will be called on updated() section.
-
+    
     scrollToElement() {
       let len = this.$refs.listItem.length;
       let al = this.$refs.listItem[len - 1]; //gets all items with the class "listItem", specifically the last one
@@ -153,7 +159,7 @@ const app = new Vue({
       }
     },
 
-    /** this function handles chat. Will push to the array of message of currentContact the text value of message element  */
+    /** this function handles chat. Will push to the array of messages of currentContact the string in the v-modeled input box */
 
     sendMessage() {
       let today = new Date();
@@ -170,7 +176,7 @@ const app = new Vue({
         current.lastMessage.push(this.sendMessageText); //this handles the message: will push a new timeStamp ad a new string
         current.timeStamp.push(time); // to current contact respective elements.
         this.filteredContacts.forEach((e) => (e.writtenTo = false));
-        current.writtenTo = true; /** New variable is assigned in every contact: writtenTo */
+        current.writtenTo = true; /** writtenTo = true to the contact last written to, everyone else is on false. */
         this.filteredContacts.sort(
           (a, b) =>
             a.writtenTo > b.writtenTo ? -1 : 1
@@ -178,7 +184,7 @@ const app = new Vue({
           // who has writtenTo = true
         );
         this.sendMessageText = "";
-        this.answer(current, random, answer, time); //will call answer function, line 198
+        this.answer(current, random, answer, time); //will call answer function, line 196
       }
     },
 
@@ -211,6 +217,7 @@ const app = new Vue({
   mounted() {
     //as soon as its loaded current contact becomes the first one
     this.currentContact = this.contacts[0];
+    //at start, filteredContacts is the same as contacts. Will change if user search.
     this.filteredContacts = [...this.contacts];
   },
 });
