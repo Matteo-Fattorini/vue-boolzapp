@@ -1,4 +1,4 @@
-var app = new Vue({
+const app = new Vue({
   el: "#app",
   data: {
     mySelf: {
@@ -24,7 +24,7 @@ var app = new Vue({
     ],
 
     contacts: [
-      //array of contacts, as obj, with avatar,name,lastSeen proprieties
+      //array of contacts, as objs. 
       {
         avatar: "css/img/avatar_io.jpg",
         name: "Noemi",
@@ -135,7 +135,7 @@ var app = new Vue({
 
   methods: {
     /** this function is for searching. If an element in the search bar is present in any of contact name,
-    add it to the filtered contact list. In HTML v-for is on normal contacts if search is empty and on filtered if not */
+    add it to the filtered contact list. In HTML v-for is on filtered list. */
 
     search() {
       this.filteredContacts = this.contacts.filter((contact) =>
@@ -143,12 +143,12 @@ var app = new Vue({
       );
     },
 
-    //this function keep the scroll to the last sent element
+    //this function keep the scroll to the last sent element. Will be called on updated() section.
 
     scrollToElement() {
       let len = this.$refs.listItem.length;
-      let al = this.$refs.listItem[len - 1];
-      if (al) {
+      let al = this.$refs.listItem[len - 1];     //gets all items with the class "listItem", specifically the last one
+      if (al) {                                  //scroll into the view of that item
         al.scrollIntoView(true);
       }
     },
@@ -156,19 +156,19 @@ var app = new Vue({
     /** this function handles chat. Will push to the array of message of currentContact the text value of message element  */
 
     sendMessage() {
-      var today = new Date();
-      var minutes =
+      let today = new Date();
+      let minutes =
         parseInt(today.getMinutes()) > 10 // adds a "0" if minutes are lower than 10
           ? today.getMinutes()
           : "0" + today.getMinutes();
-      var time = today.getHours() + ":" + minutes;
+      let time = today.getHours() + ":" + minutes;
       let maxLen = this.possibleAnswers.length;
       let answer = this.possibleAnswers;
       let random = Math.floor(Math.random() * maxLen);
       let current = this.currentContact;
       if (this.sendMessageText.length > 0 && !this.isWriting) {
-        this.currentContact.lastMessage.push(this.sendMessageText);
-        this.currentContact.timeStamp.push(time);
+        this.currentContact.lastMessage.push(this.sendMessageText);  //this handles the message: will push a new timeStamp ad a new string
+        this.currentContact.timeStamp.push(time);                    // to current contact respective elements.
         this.filteredContacts.forEach((e) => (e.writtenTo = false));
         this.currentContact.writtenTo = true; /** New variable is assigned in every contact: writtenTo */
         this.filteredContacts.sort(
@@ -179,7 +179,7 @@ var app = new Vue({
             a.writtenTo > b.writtenTo ? -1 : b.writtenTo > a.writtenTo ? 1 : 0 // who has writtenTo = true
         );
         this.sendMessageText = "";
-        this.answer(current, random, answer, time);
+        this.answer(current, random, answer, time);   //will call answer function, line 198
       }
     },
 
@@ -193,13 +193,13 @@ var app = new Vue({
       });
     },
 
-    // this functions is only called after sendMessage. Will trigger a random answer and add time stamp. 2 sec delay
+    // this functions is only called after sendMessage(). Will trigger a random answer and add time stamp. 2 sec delay
 
     answer(current, random, answers, time) {
       app.isWriting = true;
       setTimeout(function () {
         current.lastSeen = time;
-        current.lastMessage.push(answers[random]);
+        current.lastMessage.push(answers[random]);    
         current.timeStamp.push(time);
         app.isWriting = false;
       }, 2000);
@@ -207,14 +207,14 @@ var app = new Vue({
   },
 
   updated() {
-    // whenever data changes and the component re-renders, this is called.
+    // whenever data changes and the component re-renders, this function keeps the overflow 
     this.$nextTick(() => this.scrollToElement());
   },
   mounted() {
-    //as soon as he load current contact becomes the first one
+    //as soon as its loaded current contact becomes the first one
     this.currentContact = this.contacts[0];
     this.filteredContacts = [...this.contacts];
   },
 });
 
-//TODO  tirare su la posizione dei contatti quando scrivono
+
