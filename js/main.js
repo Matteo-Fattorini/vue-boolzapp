@@ -70,7 +70,7 @@ const app = new Vue({
         this.filteredContacts.forEach((e) => (e.writtenTo = false));
         current.writtenTo = true; /** writtenTo = true to the contact last written to, everyone else is on false. */
         this.filteredContacts.sort(
-          (a, b) => (a.writtenTo > b.writtenTo ? -1 : 1)
+          (a, b) => (a.writtenTo > b.writtenTo ? -1 : a.writtenTo < b.writtenTo ? 1:0)
           // This variable is used to sort the array, based on the person
           // who has writtenTo = true
         );
