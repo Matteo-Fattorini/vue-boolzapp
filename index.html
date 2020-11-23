@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bolzapp</title>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
@@ -19,13 +20,14 @@
 
     <link rel="stylesheet" href="css/style.css" />
 
+    <script  src="js/data.js" charset="utf-8"></script>
     <script defer src="js/main.js" charset="utf-8"></script>
   </head>
   <body>
     <div id="app">
       <div class="container">
         <!-- Left bar -->
-        <div class="left-bar">
+        <section class="left-bar">
           <!-- Left bar header -->
           <div class="header">
             <div class="self-profile">
@@ -62,11 +64,11 @@
           </div>
 
           <!-- left-bar-contacts -->
-          <div class="contacts">
+          <section class="contacts">
             <ul>
                 <li
                   @click="selectContact(contact.id)"
-                  v-for="contact in filteredContacts "
+                  v-for="(contact,index) in filteredContacts "
                   :key="contact.id"
                 >
                   <div class="logo">
@@ -74,15 +76,15 @@
                   </div>
                   <span class="contact-name">{{contact.name}}</span>
                   <div class="last-message">
-                    {{contact.lastMessage[contact.lastMessage.length-1]}}
+                    {{contact.messages[contact.messages.length-1].text}}
                   </div>
-                  <div class="lastConversation">{{contact.timeStamp[contact.timeStamp.length-1]}}</div>
+                  <div class="lastConversation">{{contact.messages[contact.messages.length-1].timeStamp}}</div>
                 </li>      
             </ul>
-          </div>
-        </div>
+          </section>
+        </section>
         <!-- Right bar -->
-        <div class="right-bar">
+        <section class="right-bar">
           <!-- Right-bar-Header -->
           <div class="header">
             <div class="logo">
@@ -103,11 +105,11 @@
           </div>
 
           <!-- Right-bar-messageArea -->
-          <div id= "prova" class="message-area">
+          <div class="message-area">
             <ul>
               
-              <li ref="listItem" class="list-element" v-for="( message,index) in currentContact.lastMessage"> <span>{{message}} </span> 
-                <span class="timeStamp"> {{currentContact.timeStamp[index]}} </span>
+              <li ref="listItem" :class="{recievedMessage:message.isSent, sentMessage:!message.isSent}" v-for="(message,index) in currentContact.messages"> <span>{{message.text}} </span> 
+                <span class="timeStamp"> {{message.timeStamp}} </span>
               </li>
             </ul>
           </div>
@@ -125,7 +127,7 @@
             />
             <a href="#"><i class="fas fa-microphone fa-2x"></i></a>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   </body>
