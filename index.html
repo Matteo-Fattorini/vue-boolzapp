@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bolzapp</title>
-    
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
@@ -20,7 +19,7 @@
 
     <link rel="stylesheet" href="css/style.css" />
 
-    <script  src="js/data.js" charset="utf-8"></script>
+    <script src="js/data.js" charset="utf-8"></script>
     <script defer src="js/main.js" charset="utf-8"></script>
   </head>
   <body>
@@ -66,20 +65,22 @@
           <!-- left-bar-contacts -->
           <section class="contacts">
             <ul>
-                <li
-                  @click="selectContact(contact.id)"
-                  v-for="(contact,index) in filteredContacts "
-                  :key="contact.id"
-                >
-                  <div class="logo">
-                    <img :src="contact.avatar" alt="LOGO" />
-                  </div>
-                  <span class="contact-name">{{contact.name}}</span>
-                  <div class="last-message">
-                    {{contact.messages[contact.messages.length-1].text}}
-                  </div>
-                  <div class="lastConversation">{{contact.messages[contact.messages.length-1].timeStamp}}</div>
-                </li>      
+              <li
+                @click="selectContact(contact.id)"
+                v-for="(contact,index) in filteredContacts "
+                :key="contact.id"
+              >
+                <div class="logo">
+                  <img :src="contact.avatar" alt="LOGO" />
+                </div>
+                <span class="contact-name">{{contact.name}}</span>
+                <div class="last-message">
+                  {{contact.messages[contact.messages.length-1].text}}
+                </div>
+                <div class="lastConversation">
+                  {{contact.messages[contact.messages.length-1].timeStamp}}
+                </div>
+              </li>
             </ul>
           </section>
         </section>
@@ -93,8 +94,10 @@
               </div>
               <div class="details">
                 <div class="name">{{currentContact.name}}</div>
-                <div v-if ="isWriting" class="lastSeen"> Is writing... </div>
-                <div v-else class="lastSeen">Last seen today at {{currentContact.lastSeen}}</div>
+                <div v-if="isWriting" class="lastSeen">Is writing...</div>
+                <div v-else class="lastSeen">
+                  Last seen today at {{currentContact.lastSeen}}
+                </div>
               </div>
             </div>
             <div class="icons">
@@ -107,9 +110,16 @@
           <!-- Right-bar-messageArea -->
           <div class="message-area">
             <ul>
-              
-              <li ref="listItem" :class="{recievedMessage:message.isSent, sentMessage:!message.isSent}" v-for="(message,index) in currentContact.messages"> <span>{{message.text}} </span> 
+              <li
+                ref="listItem"
+                :class="{recievedMessage:message.isSent, sentMessage:!message.isSent}"
+                v-for="(message,index) in currentContact.messages"
+              >
+                <span>{{message.text}} </span>
                 <span class="timeStamp"> {{message.timeStamp}} </span>
+                <a class="arrow-menu" href="#"
+                  ><i class="fas fa-angle-down"></i
+                ></a>
               </li>
             </ul>
           </div>
@@ -118,9 +128,9 @@
           <div class="footer">
             <a href="#"><i class="far fa-smile fa-2x"></i></a>
             <input
-              v-model = "sendMessageText"
-              @keydown.enter = "sendMessage()"
-              @keyup.enter ="scrollToElement()"
+              v-model="sendMessageText"
+              @keydown.enter="sendMessage()"
+              @keyup.enter="scrollToElement()"
               id="message-input"
               type="text"
               placeholder="Write a message"

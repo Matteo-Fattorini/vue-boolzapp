@@ -62,23 +62,13 @@ let contacts = [
     lastSeen: "20:50",
     messages: [
       {
-        text: "I heard a super funny joke yesterday, wanna hear it?",
+        text: "It's so hot today!",
         timeStamp: "19.15",
         isSent: false,
       },
       {
-        text: "Sure, go on!",
+        text: "Indeed!",
         timeStamp: "19.15",
-        isSent: true,
-      },
-      {
-        text: "What is the biggest lie in the entire universe? -'I have read and agree to the Terms & Conditions.'",
-        timeStamp: "19.18",
-        isSent: false,
-      },
-      {
-        text: "Ahah!",
-        timeStamp: "19.19",
         isSent: true,
       },
     ],
@@ -99,7 +89,6 @@ let contacts = [
         timeStamp: "18.15",
         isSent: true,
       },
-
     ],
     id: 103,
   },
@@ -175,7 +164,8 @@ let contacts = [
         isSent: true,
       },
       {
-        text: "What is the best thing about Switzerland?  I don't know, but the flag is a big plus!",
+        text:
+          "What is the best thing about Switzerland?  I don't know, but the flag is a big plus!",
         timeStamp: "13.18",
         isSent: false,
       },
@@ -202,25 +192,22 @@ let contacts = [
         timeStamp: "11.15",
         isSent: true,
       },
-
     ],
     id: 107,
   },
 ];
-    
 
 let possibleAnswers = [
-      //possible answer that every contact can give
-      "Not sure about that",
-      "Yeah, whatever",
-      "I guess so...",
-      "Probably not",
-      "Yeah, indeed!",
-      "No, i don't think so",
-      "Are you sure about that?",
-      "I never tought about that!",
-      "I would love to!",
-      "I always wanted you to ask me that...",
-      "Me too!",
-    ]
-
+  //possible answer that every contact can give
+  "Not sure about that",
+  "Yeah, whatever",
+  "I guess so...",
+  "Probably not",
+  "Yeah, indeed!",
+  "No, i don't think so",
+  "Are you sure about that?",
+  "I never tought about that!",
+  "I would love to!",
+  "I always wanted you to ask me that...",
+  "Me too!",
+];
