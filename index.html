@@ -69,6 +69,7 @@
                 @click="selectContact(contact.id)"
                 v-for="(contact,index) in filteredContacts "
                 :key="contact.id"
+                :class="{selected:contact.id == currentContact.id}"
               >
                 <div class="logo">
                   <img :src="contact.avatar" alt="LOGO" />

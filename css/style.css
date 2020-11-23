@@ -175,6 +175,10 @@ a:hover {
   cursor: pointer;
 }
 
+.selected {
+  background-color: #cecece;
+}
+
 .left-bar .contacts li .last-message {
   overflow: hidden;
   position: absolute;
