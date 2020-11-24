@@ -5,11 +5,13 @@
 
 const app = new Vue({
   el: "#app",
+
   data: {
     mySelf: {
       avatar: "css/img/avatar_2.jpg", //self-contact
       name: "Matteo Fattorini",
     },
+    
     contacts, //get contacts from data.js
     possibleAnswers, //get answers from data.js
 
@@ -65,6 +67,7 @@ const app = new Vue({
           text: this.sendMessageText,
           timeStamp: time,
           isSent: true,
+          isArrowClicked: false,
         });
 
         this.filteredContacts.forEach((e) => (e.writtenTo = false));
@@ -76,7 +79,7 @@ const app = new Vue({
           // who has writtenTo = true
         );
         this.sendMessageText = "";
-        this.answer(current, random, answer, time); //will call answer function, line 94
+        this.answer(current, random, answer, time); //will call answer function
       }
     },
 
@@ -89,6 +92,10 @@ const app = new Vue({
       });
     },
 
+    toggleArrow(message) {  //check if arrow is clicked for each message.
+      message.isArrowClicked = !message.isArrowClicked;
+    },
+
     // this functions is only called after sendMessage(). Will trigger a random answer and add time stamp. 2 sec delay
 
     answer(current, random, answers, time) {
@@ -99,6 +106,7 @@ const app = new Vue({
           text: answers[random],
           timeStamp: time,
           isSent: false,
+          isArrowClicked: false,
         });
         app.isWriting = false;
       }, 2000);

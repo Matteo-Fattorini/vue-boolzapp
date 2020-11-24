@@ -290,6 +290,18 @@ a:hover {
   top: 50%;
   transform: translateY(-50%);
   display: none;
+
+}
+
+.right-bar .arrow-menu .context-menu {
+  position: absolute;
+  width: 200px;
+  transform: translateX(-50%);
+  top: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #cecece;
+  border: 1px solid grey;
 }
 
 .recievedMessage:hover .arrow-menu,
