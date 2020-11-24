@@ -1,6 +1,6 @@
 
 
-let contacts = [
+const contacts = [
   //array of contacts, as objs.
   {
     avatar: "css/img/avatar_io.jpg",
@@ -199,7 +199,7 @@ let contacts = [
   },
 ];
 
-let possibleAnswers = [
+const possibleAnswers = [
   //possible answer that every contact can give
   "Not sure about that",
   "Yeah, whatever",
