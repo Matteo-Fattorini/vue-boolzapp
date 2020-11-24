@@ -120,7 +120,8 @@
                 <span class="timeStamp"> {{message.timeStamp}} </span>
                 <a @click="toggleArrow(message)" class="arrow-menu" href="#"
                   ><i class="fas fa-angle-down">
-                    <div v-if= "message.isArrowClicked == true" class="context-menu"> <span @click="message.text = 'Messaggio Eliminato'" id= "delete">Elimina Messaggio</span> </div></i
+                    <div v-if= "message.isArrowClicked == true" class="context-menu"> <span @click="message.text = 'Messaggio Eliminato'" id= "delete">Elimina Messaggio</span>
+                    <i @click="message.text = 'Messaggio Eliminato'" class="fas fa-trash"></i> </div></i
                 ></a>
               </li>
             </ul>
