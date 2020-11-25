@@ -116,7 +116,7 @@ const app = new Vue({
     },
 
     emojiFilter(index) {
-      return String.fromCodePoint(this.emoji[index]);
+      return String.fromCodePoint(this.emoji[index]);  //this function generates emoticon in emoticon ul
     },
   },
 

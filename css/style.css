@@ -376,7 +376,12 @@ a:hover {
   width: 500px;
   border: 1px solid black;
   transform: translateY(-100%);
-  background-color: rgba(163, 163, 163, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.right-bar .footer a {
+  text-decoration: none;
+  font-size: 1.5rem;
 }
 
 #message-input {
