@@ -11,9 +11,11 @@ const app = new Vue({
       avatar: "css/img/avatar_2.jpg", //self-contact
       name: "Matteo Fattorini",
     },
-    
+
     contacts, //get contacts from data.js
+    emoji, //get emoticons from data.js
     possibleAnswers, //get answers from data.js
+    areEmoticonOpen: false, //toggle emoticons
 
     isWriting: false, //will use this to know when the automate answer is triggered
 
@@ -92,7 +94,8 @@ const app = new Vue({
       });
     },
 
-    toggleArrow(message) {  //check if arrow is clicked for each message.
+    toggleArrow(message) {
+      //check if arrow is clicked for each message.
       message.isArrowClicked = !message.isArrowClicked;
     },
 
@@ -111,12 +114,17 @@ const app = new Vue({
         app.isWriting = false;
       }, 2000);
     },
+
+    emojiFilter(index) {
+      return String.fromCodePoint(this.emoji[index]);
+    },
   },
 
   updated() {
     // whenever data changes and the component re-renders, this function keeps the overflow
     this.$nextTick(() => this.scrollToElement());
   },
+
   mounted() {
     //as soon as its loaded current contact becomes the first one
     this.currentContact = this.contacts[0];

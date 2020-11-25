@@ -1,4 +1,41 @@
-
+const emoji = [
+  0x1f600,
+  0x1f604,
+  0x1f34a,
+  0x1f344,
+  0x1f37f,
+  0x1f363,
+  0x1f370,
+  0x1f355,
+  0x1f354,
+  0x1f35f,
+  0x1f6c0,
+  0x1f48e,
+  0x1f5fa,
+  0x23f0,
+  0x1f579,
+  0x1f4da,
+  0x1f431,
+  0x1f42a,
+  0x1f439,
+  0x1f424,
+  0x1f37f,
+  0x1f363,
+  0x1f370,
+  0x1f355,
+  0x1f354,
+  0x1f35f,
+  0x1f6c0,
+  0x1f48e,
+  0x1f5fa,
+  0x23f0,
+  0x1f579,
+  0x1f4da,
+  0x1f431,
+  0x1f42a,
+  0x1f439,
+  0x1f424,
+];
 
 const contacts = [
   //array of contacts, as objs.
@@ -8,7 +45,7 @@ const contacts = [
     lastSeen: "22:32",
     messages: [
       {
-        text: "Hey what's going on?",
+        text: "Hey whats going on? ",
         timeStamp: "22.15",
         isSent: false,
         isArrowClicked: false,

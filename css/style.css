@@ -291,7 +291,6 @@ a:hover {
   top: 50%;
   transform: translateY(-50%);
   display: none;
-
 }
 
 .right-bar .arrow-menu .context-menu {
@@ -344,6 +343,40 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.right-bar .footer .footer-left-wrapper {
+  position: relative;
+}
+
+.right-bar .footer ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: left;
+  flex-wrap: wrap;
+  align-content: center;
+}
+.right-bar .footer ul li {
+  min-width: 50px !important;
+  min-height: 40px !important;
+}
+
+.right-bar .footer a:hover {
+  opacity: 0.5;
+}
+
+.right-bar .footer .emoticon {
+  color: black;
+  position: absolute;
+  top: -12px;
+  left: 0;
+  height: 200px;
+  border-radius: 10px;
+  width: 500px;
+  border: 1px solid black;
+  transform: translateY(-100%);
+  background-color: rgba(163, 163, 163, 0.5);
 }
 
 #message-input {
