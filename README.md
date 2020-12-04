@@ -2,21 +2,21 @@ Welcome to Boolzap!
 ===================
 
 
-Descrizione
+Description
 -------
+What's App replica with some of its functionalities. Project is developed using HTML/CSS/JS particulary with the help of the VUE.js framework.
 
-Replica di what's app con alcune delle sue funzioni principali. Il progetto è sviluppato usando HTML/CSS/JS in particolare con l'aiuto del Framework di VUE.js.
+## Functionalities
 
-## Funzionalità ##
-
- - Grafica di what's app
- - Gestione cerca nei contatti
- - Risposta automatica all'invio di un messaggio
+ - What's App design
+ - Search in contacts
+ - Automatic reply to message input
  - Emoticon
- - Data e ora aggiornata in tempo reale
- - Possibilità di eliminare un messaggio
- - Ordinamento contatti in base all'ultimo accesso
-## Uno sguardo da vicino
+ - Date is updated in real time
+ - Messages can be deleted
+ - Contacts are sorted by last access
+ 
+## A sample of what it can do
 
 ![](bolzapp.gif)
 
